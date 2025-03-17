@@ -91,7 +91,6 @@ async function getBooks() {
         }))
 
         console.log('books', books);
-        console.log('fine');
 
     } catch (error) {
         console.error(error);
@@ -100,5 +99,27 @@ async function getBooks() {
 
 (async () => {
     getBooks()
+
 })()
 
+// Snack 6
+
+const areThereAvailableBooks = books.some(e => e.available)
+console.log('areThereAvailableBooks', areThereAvailableBooks);
+
+const booksByPrice = books.sort((a, b) => parseInt(a.price) - parseInt(b.price))
+
+
+booksByPrice.sort((a, b) => b.available - a.available)
+console.log('booksByPriceAvailable', booksByPrice);
+
+
+// Snack 7 sa reduce per creare un oggetto (tagCounts) che conta quante volte ogni tag viene usato tra i libri.
+
+// const tagCounts = books.tag.reduce((acc, curr) => {
+//     if (tagCounts[curr]) {
+//         return { ...acc, curr }
+//     }
+// }, {})
+
+// console.log('tagCounts', tagCounts);
