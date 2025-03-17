@@ -78,11 +78,7 @@ console.log('agesSum', agesSum);
 
 const ids = [2, 13, 7, 21, 19]
 
-async function fetchJson(url) {
-
-}
-
-async function getBooks() {
+async function getBooks(ids) {
     try {
         const books = await Promise.all(ids.map(async id => {
             const getFetch = await fetch(`https://boolean-spec-frontend.vercel.app/freetestapi/books/${id}`);
@@ -98,7 +94,7 @@ async function getBooks() {
 }
 
 (async () => {
-    getBooks()
+    getBooks(ids)
 
 })()
 
@@ -116,10 +112,15 @@ console.log('booksByPriceAvailable', booksByPrice);
 
 // Snack 7 sa reduce per creare un oggetto (tagCounts) che conta quante volte ogni tag viene usato tra i libri.
 
-// const tagCounts = books.tag.reduce((acc, curr) => {
-//     if (tagCounts[curr]) {
-//         return { ...acc, curr }
-//     }
-// }, {})
+const tagCounts = books.reduce((acc, b) => {
+    b.tags.forEach(tag => {
+        if (acc[tag]) {
+            acc[tag]++
+        } else {
+            acc[tag] = 1
+        }
+    })
+    return acc
+}, {})
 
-// console.log('tagCounts', tagCounts);
+console.log('tagCounts', tagCounts);
